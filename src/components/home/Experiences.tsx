@@ -1,86 +1,246 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
+import { BsStarFill } from "react-icons/bs";
+import { IoAdd } from "react-icons/io5";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-const stats = [
-    { value: "5+", label: "Years of experience", id: "01" },
-    { value: "27+", label: "Successful projects", id: "02" },
-    { value: "99%", label: "Client satisfaction", id: "03" },
-    { value: "12+", label: "Industry awards", id: "04" }
-];
+const TestimonialRating = () => (
+    <div className="flex gap-1 text-[#FFB02E] text-[10px]">
+        {[...Array(5)].map((_, i) => (
+            <BsStarFill key={i} />
+        ))}
+    </div>
+);
+
+const ScrollRevealSpan = ({ children }: { children: string }) => {
+    const container = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: container,
+        offset: ["start 0.95", "end 0.5"]
+    });
+
+    const words = children.split(" ");
+
+    return (
+        <span ref={container}>
+            {words.map((word, i) => {
+                const start = i / words.length;
+                const end = start + (1 / words.length);
+                const color = useTransform(scrollYProgress, [start, end], ["#a3a3a3", "#000000"]);
+                return (
+                    <motion.span key={i} style={{ color }} className="inline-block mr-[0.25em]">
+                        {word}
+                    </motion.span>
+                );
+            })}
+        </span>
+    );
+};
 
 export function Experiences() {
     return (
-        <section className="py-24 px-4 md:px-6 bg-[#0a0a0a] text-white">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-                <div className="flex flex-col gap-2 mb-6 md:mb-0">
-                    <div className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center">
-                        <div className="w-4 h-4 bg-white rounded-sm" />
+        <section className="py-24 px-4 md:px-8 bg-[#F3F3F3] text-black overflow-hidden">
+            {/* Header Area */}
+            <div className="flex flex-col items-center justify-center mb-24 relative">
+                <div className="absolute left-0 top-0 flex items-center gap-2">
+                    <div className="w-5 h-5 bg-black rounded-full flex items-center justify-center text-white text-xs">
+                        <IoAdd />
                     </div>
-                    <span className="font-medium">Our journey</span>
+                    <span className="font-medium text-sm">Testimonials</span>
                 </div>
 
-                <div className="flex flex-col items-end">
-                    <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter">Experiences.</h2>
-                    <span className="text-xl md:text-2xl font-semibold opacity-40">(8)</span>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-                <div>
-                    <h3 className="text-3xl md:text-5xl font-semibold leading-tight tracking-tight mb-8">
-                        We bring together creativity,{" "}
-                        <span className="opacity-50">
-                            strategy, and technology to deliver exceptional digital experiences.
-                        </span>
-                    </h3>
-                </div>
-
-                <div className="flex flex-col gap-6">
-                    <p className="text-lg text-neutral-400 leading-relaxed">
-                        With years of experience across industries, we understand what it takes to create impactful digital solutions. Our team combines creative vision with technical expertise to help businesses grow and thrive in the digital landscape.
-                    </p>
-                    <p className="text-lg text-neutral-400 leading-relaxed">
-                        From startups to established enterprises, we've partnered with clients worldwide to transform their digital presence and achieve measurable results.
-                    </p>
+                <div className="text-center">
+                    <h2 className="text-[5rem] md:text-[8rem] font-medium tracking-tight leading-[0.9]">
+                        Experiences.
+                    </h2>
                 </div>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {stats.map((stat) => (
-                    <div
-                        key={stat.id}
-                        className="bg-neutral-900 rounded-[30px] p-6 md:p-8 flex flex-col justify-between aspect-square"
-                    >
-                        <div className="flex justify-between items-start">
-                            <span className="text-4xl md:text-5xl font-semibold tracking-tighter">{stat.value}</span>
-                            <span className="text-xs font-semibold opacity-40">{stat.id}</span>
+            {/* Grid Content */}
+            <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                {/* Column 1 */}
+                <div className="flex flex-col gap-2">
+                    <div className="bg-white rounded-xl p-8 h-full flex flex-col justify-between">
+                        <div className="mb-12">
+                            <div className="flex items-end gap-1 mb-2">
+                                <span className="text-6xl font-medium tracking-tighter">4.9</span>
+                                <span className="text-xl text-neutral-400 mb-2">/5</span>
+                            </div>
+                            <p className="text-neutral-500 leading-tight text-[15px] font-medium max-w-[200px]">
+                                We've delivered <span className="text-black">56+ projects</span> that help
+                                companies generate real results.
+                            </p>
                         </div>
-                        <p className="text-sm font-medium opacity-60 text-right mt-auto">{stat.label}</p>
+
+                        <div>
+                            <div className="mb-6">
+                                <h3 className="font-bold text-lg mb-3">fabrica®</h3>
+                                <div className="flex items-center gap-2 mb-2">
+                                    {/* Simulated Avatars */}
+                                    <div className="flex -space-x-3">
+                                        {[1, 2, 3].map((i) => (
+                                            <div key={i} className="w-8 h-8 rounded-full bg-neutral-200 border-2 border-white overflow-hidden relative">
+                                                <Image
+                                                    src={`https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg`}
+                                                    alt="User"
+                                                    fill
+                                                    className="object-cover opacity-80"
+                                                />
+                                            </div>
+                                        ))}
+                                        <div className="w-8 h-8 rounded-full bg-black border-2 border-white flex items-center justify-center text-white text-[10px] z-10">
+                                            56+
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="text-xs text-neutral-500 font-medium">Trusted by clients worldwide</p>
+                            </div>
+                            <button className="w-full bg-[#0a0a0a] text-white rounded-full py-4 px-6 font-medium hover:bg-neutral-800 transition-colors">
+                                Leave a review
+                            </button>
+                        </div>
                     </div>
-                ))}
+                </div>
+
+                {/* Column 2 */}
+                <div className="flex flex-col gap-2 transition-all duration-300 hover:gap-0 group cursor-pointer">
+                    <div className="bg-white rounded-xl p-5 flex items-center gap-4 transition-all duration-300 group-hover:rounded-b-none">
+                        <div className="w-12 h-12 rounded-xl overflow-hidden relative shrink-0">
+                            <Image
+                                src="https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg"
+                                alt="James Carter"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-sm">James Carter</h4>
+                            <p className="text-xs text-neutral-400 font-medium">Wilson & Co</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-8 grow flex flex-col justify-between relative transition-all duration-300 group-hover:rounded-t-none">
+                        <div className="absolute top-6 right-6 text-black transition-transform duration-300 group-hover:rotate-90">
+                            <IoAdd className="text-xl" />
+                        </div>
+                        <div className="mb-8">
+                            <TestimonialRating />
+                        </div>
+                        <p className="text-2xl font-medium tracking-tight leading-tight">
+                            Incredible team! They delivered exactly what we needed, on time and beyond expectations.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Column 3 */}
+                <div className="flex flex-col gap-2 transition-all duration-300 hover:gap-0 group cursor-pointer">
+                    <div className="bg-white rounded-xl p-8 grow flex flex-col justify-between relative transition-all duration-300 group-hover:rounded-b-none">
+                        <p className="text-2xl font-medium tracking-tight leading-tight mb-8">
+                            A smooth process from start to finish. Highly professional team!
+                        </p>
+                        <div>
+                            <TestimonialRating />
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-5 flex items-center gap-4 transition-all duration-300 group-hover:rounded-t-none">
+                        <div className="w-12 h-12 rounded-xl overflow-hidden relative shrink-0">
+                            <Image
+                                src="https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg"
+                                alt="Emily Davis"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-sm">Emily Davis</h4>
+                            <p className="text-xs text-neutral-400 font-medium">StartUp Hub</p>
+                        </div>
+                        <div className="ml-auto text-black transition-transform duration-300 group-hover:rotate-90">
+                            <IoAdd className="text-xl" />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Column 4 */}
+                <div className="flex flex-col gap-2 transition-all duration-300 hover:gap-0 group cursor-pointer">
+                    <div className="bg-white rounded-xl p-5 flex items-center gap-4 transition-all duration-300 group-hover:rounded-b-none">
+                        <div className="w-12 h-12 rounded-xl overflow-hidden relative shrink-0">
+                            <Image
+                                src="https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg"
+                                alt="Anna Martinez"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-sm">Anna Martinez</h4>
+                            <p className="text-xs text-neutral-400 font-medium">Marketing Director</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-8 grow flex flex-col justify-between relative transition-all duration-300 group-hover:rounded-t-none">
+                        <div className="absolute top-6 right-6 text-black transition-transform duration-300 group-hover:rotate-90">
+                            <IoAdd className="text-xl" />
+                        </div>
+                        <div className="mb-8">
+                            <TestimonialRating />
+                        </div>
+                        <p className="text-2xl font-medium tracking-tight leading-tight">
+                            Our new branding is exactly what we envisioned—clean, modern, and unique. #1 in our industry.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            {/* Testimonial Card */}
-            <div className="mt-12 bg-neutral-900 rounded-[30px] p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
-                <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0">
-                    <Image
-                        src="https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg"
-                        alt="Client"
-                        fill
-                        className="object-cover"
-                    />
+            {/* Stats & Approach Section */}
+            <div className="max-w-[1400px] mx-auto mt-32">
+                {/* Stats Row */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24">
+                    <div>
+                        <h3 className="text-6xl font-medium tracking-tighter mb-4">3m+</h3>
+                        <p className="text-sm text-neutral-500 font-medium max-w-[150px] leading-tight">Ad impressions managed</p>
+                    </div>
+                    <div>
+                        <h3 className="text-6xl font-medium tracking-tighter mb-4">27+</h3>
+                        <p className="text-sm text-neutral-500 font-medium max-w-[150px] leading-tight">Successful projects launched</p>
+                    </div>
+                    <div>
+                        <h3 className="text-6xl font-medium tracking-tighter mb-4">98%</h3>
+                        <p className="text-sm text-neutral-500 font-medium max-w-[150px] leading-tight">Client satisfaction rate</p>
+                    </div>
+                    <div>
+                        <h3 className="text-6xl font-medium tracking-tighter mb-4">50k+</h3>
+                        <p className="text-sm text-neutral-500 font-medium max-w-[150px] leading-tight">Monthly visitors driven through SEO</p>
+                    </div>
                 </div>
-                <div className="flex-1">
-                    <p className="text-lg md:text-xl text-neutral-300 leading-relaxed mb-4">
-                        "Working with fabrica® was a game-changer for our business. Their attention to detail and strategic approach helped us achieve results beyond our expectations."
-                    </p>
-                    <div className="flex items-center gap-2">
-                        <span className="font-semibold">Michael Chen</span>
-                        <span className="text-neutral-500">– CEO at TechFlow</span>
+
+                {/* Divider */}
+                <div className="w-full h-px bg-neutral-200 mb-24"></div>
+
+                {/* Approach Content */}
+                <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
+                    {/* Left: Brand */}
+                    <div>
+                        <h4 className="font-bold text-lg mb-4">fabrica®</h4>
+                        <p className="text-xs text-neutral-500 font-medium max-w-[200px] leading-relaxed">
+                            Every project we take on is designed for long-term success.
+                        </p>
+                    </div>
+
+                    {/* Right: Text */}
+                    <div>
+                        <h3 className="text-3xl md:text-4xl font-medium tracking-tight leading-tight mb-8 max-w-4xl">
+                            <span className="text-neutral-400">Our approach is simple: </span>
+                            <ScrollRevealSpan>
+                                we focus on functionality, speed, and clarity, ensuring that every project serves a clear purpose without unnecessary complexity.
+                            </ScrollRevealSpan>
+                        </h3>
+                        <p className="text-neutral-500 text-lg leading-relaxed max-w-2xl">
+                            We don't overpromise or use flashy marketing language. We simply build well-designed, functional websites and strategies that help businesses succeed.
+                        </p>
                     </div>
                 </div>
             </div>
