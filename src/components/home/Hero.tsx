@@ -73,7 +73,7 @@ export function Hero() {
                     </div>
 
                     {/* Services List - positioned on the right */}
-                    <div className="absolute top-[5%] md:top-[15%] right-0 md:right-4 text-right flex flex-col gap-1 text-sm md:text-base font-medium leading-relaxed">
+                    <div className="absolute top-[5%] md:top-[15%] right-0 md:right-4 text-right flex flex-col gap-1 text-sm md:text-base font-medium leading-relaxed mt-[80px]">
                         <p className="text-white/90">Branding and Identity</p>
                         <p className="text-white/90">Social Media Marketing</p>
                         <p className="text-white/90">Web Design and Development</p>
@@ -108,23 +108,28 @@ export function Hero() {
 
                     {/* Right Side: Team Card */}
                     <div className="col-span-12 md:col-span-4 flex justify-end">
-                        <div className="bg-white rounded-[18px] p-2 pr-4 flex items-center gap-3 shadow-xl">
-                            <div className="relative w-14 h-[70px] rounded-[12px] overflow-hidden shrink-0 bg-neutral-200">
-                                <Image
-                                    src="https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg"
-                                    alt="Team Lead"
-                                    fill
-                                    className="object-cover"
-                                />
+                        <div className="group flex items-stretch gap-0 transition-all duration-300 hover:bg-white rounded-[12px]">
+                            {/* Left Card - Image */}
+                            <div className="bg-white rounded-[12px] p-1 flex items-center transition-all duration-300">
+                                <div className="relative w-24 h-[120px] rounded-[8px] overflow-hidden shrink-0 bg-neutral-200">
+                                    <Image
+                                        src="https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg"
+                                        alt="Team Lead"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
                             </div>
-                            <div className="flex flex-col justify-center">
-                                <div className="text-[8px] font-bold text-neutral-700 uppercase tracking-wider">Team Lead</div>
-                                <div className="text-[8px] text-neutral-400 font-medium">at fabrica®</div>
-                                <div className="text-sm font-bold text-black tracking-tight leading-tight mt-0.5 mb-1.5">Lauren Thompson</div>
 
-                                <button className="bg-black text-white text-[8px] font-semibold rounded-full py-1 px-2.5 flex items-center gap-2 group hover:bg-neutral-800 transition-colors w-fit">
+                            {/* Right Card - Content */}
+                            <div className="bg-white rounded-[12px] p-3 pr-8 flex flex-col justify-center transition-all duration-300 grow">
+                                <div className="text-xs font-bold text-neutral-700 uppercase tracking-wider">Team Lead</div>
+                                <div className="text-xs text-neutral-400 font-medium">at fabrica®</div>
+                                <div className="text-xl font-bold text-black tracking-tight leading-tight mt-1 mb-3">Lauren Thompson</div>
+
+                                <button className="bg-black text-white text-xs font-semibold rounded-full py-2 px-4 flex items-center gap-2 group/btn hover:bg-neutral-800 transition-colors w-fit">
                                     <span>Let's talk</span>
-                                    <div className="w-1 h-1 rounded-full bg-white" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-white" />
                                 </button>
                             </div>
                         </div>
