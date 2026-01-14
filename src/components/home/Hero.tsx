@@ -5,9 +5,9 @@ import Image from "next/image";
 
 export function Hero() {
     return (
-        <section className="relative px-2 pt-[48px] pb-2 z-20">
+        <section className="relative px-1.5 pt-[48px] pb-1.5 z-20">
             {/* Main Container with rounded corners */}
-            <div className="relative w-full min-h-[calc(100vh-56px)] rounded-[30px] md:rounded-[40px] overflow-hidden flex flex-col justify-between p-6 md:p-10 text-white shadow-2xl">
+            <div className="relative w-full min-h-[calc(100vh-56px)] rounded-[20px] md:rounded-[24px] overflow-hidden flex flex-col justify-between p-6 md:p-10 text-white shadow-2xl">
 
                 {/* Background Video inside the container */}
                 <div className="absolute inset-0 -z-20">

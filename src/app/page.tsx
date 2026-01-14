@@ -15,8 +15,11 @@ export default function Home() {
       <Hero />
       <ClientsSection />
       <Projects />
-      <Advantages />
-      <Services />
+      {/* Wrapper for sticky scroll effect - Advantages sticks until Services ends */}
+      <div className="relative">
+        <Advantages />
+        <Services />
+      </div>
       <Experiences />
       <Pricing />
       <FAQ />
