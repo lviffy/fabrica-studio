@@ -51,7 +51,7 @@ const projects = [
 export function Projects() {
     return (
         <section className="py-24 bg-neutral-100 text-black rounded-t-[30px] md:rounded-t-[60px] translate-y-0 z-10 relative">
-            <div className="max-w-6xl mx-auto px-4">
+            <div className="max-w-[1312px] mx-auto px-4">
                 {/* Projects Header Area */}
                 <div className="flex flex-col items-center justify-center relative mb-16">
                     {/* (27) - Absolute Left */}

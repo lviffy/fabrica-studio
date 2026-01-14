@@ -33,11 +33,15 @@ export function ClientsSection() {
         >
             <motion.div
                 style={{ y, opacity }}
-                className="w-full max-w-6xl mx-auto px-4 mb-8 flex justify-between items-end"
+                className="w-full max-w-[1312px] mx-auto px-4 mb-8 flex justify-between items-end"
             >
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <span className="flex items-center justify-center w-4 h-4 rounded-full bg-primary text-[10px] text-primary-foreground font-bold">+</span>
-                    <span>Our clients</span>
+                <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded-full bg-black flex items-center justify-center text-white text-[10px]">
+                        <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 0V6M0 3H6" stroke="currentColor" strokeWidth="1.5" />
+                        </svg>
+                    </div>
+                    <span className="font-medium text-sm text-black">Our clients</span>
                 </div>
                 <span className="text-sm text-muted-foreground">(2018-2026)</span>
             </motion.div>
@@ -45,7 +49,7 @@ export function ClientsSection() {
             <div className="container mx-auto px-4">
                 <motion.div
                     style={{ y, opacity }}
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 w-full max-w-6xl mx-auto"
+                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 w-full max-w-[1312px] mx-auto"
                 >
                     {CLIENTS.map((client, index) => (
                         <div
