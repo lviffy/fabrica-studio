@@ -56,8 +56,8 @@ export function Hero() {
                                 fabrica
                             </h1>
                             {/* Circled R - smaller and positioned at top right of text */}
-                            <div className="relative flex items-center justify-center w-[9vw] md:w-[7vw] h-[9vw] md:h-[7vw] border-[0.4vw] border-white rounded-full mt-[0.5vw] ml-[0.5vw]">
-                                <span className="text-[5vw] md:text-[4vw] font-bold leading-none">R</span>
+                            <div className="relative flex items-center justify-center w-[5vw] md:w-[4vw] h-[5vw] md:h-[4vw] border-[0.25vw] border-white rounded-full mt-[2.5vw] ml-[0.5vw]">
+                                <span className="text-[2.5vw] md:text-[2vw] font-bold leading-none">R</span>
                             </div>
                         </div>
                     </div>

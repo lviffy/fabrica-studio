@@ -33,7 +33,7 @@ export function ClientsSection() {
         >
             <motion.div
                 style={{ y, opacity }}
-                className="w-full max-w-5xl mx-auto px-4 mb-8 flex justify-between items-end"
+                className="w-full max-w-6xl mx-auto px-4 mb-8 flex justify-between items-end"
             >
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <span className="flex items-center justify-center w-4 h-4 rounded-full bg-primary text-[10px] text-primary-foreground font-bold">+</span>
@@ -45,7 +45,7 @@ export function ClientsSection() {
             <div className="container mx-auto px-4">
                 <motion.div
                     style={{ y, opacity }}
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 w-full max-w-5xl mx-auto"
+                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 w-full max-w-6xl mx-auto"
                 >
                     {CLIENTS.map((client, index) => (
                         <div

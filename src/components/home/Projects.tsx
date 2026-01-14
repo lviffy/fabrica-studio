@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -51,64 +50,76 @@ const projects = [
 
 export function Projects() {
     return (
-        <section className="py-24 px-4 md:px-6 bg-background text-black rounded-t-[30px] md:rounded-t-[60px] translate-y-0 z-10 relative">
-            <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-                <div className="flex items-baseline gap-2">
-                    <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter">Projects.</h2>
-                    <span className="text-xl md:text-2xl font-semibold opacity-40">(27)</span>
+        <section className="py-24 bg-neutral-100 text-black rounded-t-[30px] md:rounded-t-[60px] translate-y-0 z-10 relative">
+            <div className="max-w-6xl mx-auto px-4">
+                {/* Projects Header Area */}
+                <div className="flex flex-col items-center justify-center relative mb-16">
+                    {/* (27) - Absolute Left */}
+                    <div className="md:absolute left-0 top-0 text-sm font-medium text-neutral-400 mb-4 md:mb-0">
+                        (27)
+                    </div>
+
+                    {/* Main Title Center */}
+                    <div className="flex flex-col items-center">
+                        <h2 className="text-6xl md:text-9xl font-bold tracking-tighter mb-4">Projects.</h2>
+                    </div>
+
+                    {/* Description - Absolute Right */}
+                    <div className="md:absolute right-0 top-1/2 md:-translate-y-1/2 max-w-[200px] text-right mt-8 md:mt-0">
+                        <p className="text-sm font-medium text-neutral-500 leading-relaxed">
+                            We've helped businesses across industries achieve their goals. Here are some of our recent projects.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="flex flex-col items-end gap-4 mt-6 md:mt-0">
-                    <div className="text-xl font-semibold">©2025</div>
-                    <p className="max-w-xs text-right text-lg font-medium opacity-60">
-                        We’ve helped businesses across industries achieve their goals. Here are some of our recent projects.
-                    </p>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {projects.map((project) => (
-                    <Link
-                        key={project.slug}
-                        href={`/projects/${project.slug}`}
-                        className="group relative bg-white rounded-2xl p-2 border border-black/5 hover:border-black/10 transition-colors"
-                    >
-                        {/* Project Header */}
-                        <div className="flex justify-between items-center px-4 py-3">
-                            <div className="font-semibold text-lg">{project.name}</div>
-                            <div className="flex items-center gap-4">
-                                <div className="flex items-center gap-1 opacity-40 text-sm font-medium">
-                                    <span>/</span>
-                                    <span>{project.year}</span>
+                {/* Projects Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {projects.map((project) => (
+                        <Link
+                            key={project.slug}
+                            href={`/projects/${project.slug}`}
+                            className="group relative"
+                        >
+                            {/* Card Header - Separate white rounded box */}
+                            <div className="flex justify-between items-center px-4 py-3 bg-white rounded-[10px] mb-1">
+                                <div className="flex items-baseline gap-2">
+                                    <span className="font-semibold text-base text-black">{project.name}</span>
+                                    <span className="text-xs font-medium text-neutral-400">/ {project.year}</span>
                                 </div>
+
+                                {/* Dots - Colorful on hover */}
                                 <div className="flex gap-1">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-200" />
-                                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-200" />
-                                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-200" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 transition-colors duration-300 group-hover:bg-red-500" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 transition-colors duration-300 group-hover:bg-yellow-500" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-neutral-300 transition-colors duration-300 group-hover:bg-green-500" />
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Card Content */}
-                        <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-white border border-black/5">
-                            {/* Logo Overlay */}
-                            <div className="absolute top-4 left-4 z-10 w-32 h-10">
-                                <Image src={project.logo} alt={`${project.name} logo`} fill className="object-contain object-left" />
+                            {/* Card Image - With white padding container */}
+                            <div className="bg-white rounded-[12px] p-1 overflow-hidden">
+                                <div className="relative aspect-[4/3] w-full rounded-[10px] overflow-hidden">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.name}
+                                        fill
+                                        className="object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:blur-[6px]"
+                                    />
+                                    {/* Logo Overlay - Centered on image */}
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="relative w-32 h-10 transition-transform duration-500 ease-out group-hover:scale-75">
+                                            <Image
+                                                src={project.logo}
+                                                alt={`${project.name} logo`}
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                            {/* Main Image */}
-                            <div className="relative w-full h-full">
-                                <div className="absolute inset-0 bg-black/15 z-[1]" />
-                                <Image
-                                    src={project.image}
-                                    alt={project.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                            </div>
-                        </div>
-                    </Link>
-                ))}
+                        </Link>
+                    ))}
+                </div>
             </div>
         </section>
     );
