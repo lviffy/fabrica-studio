@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { IoAdd } from "react-icons/io5";
 
 const features = [
     {
@@ -35,14 +36,14 @@ export function About() {
                     <div className="flex flex-col md:flex-row gap-4 md:gap-24 items-start mb-24 md:mb-32">
                         {/* Left Column - Tags */}
                         <div className="flex flex-col gap-8 mb-10 md:mb-0 shrink-0">
-                            <button className="bg-transparent border border-neutral-200 text-black px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium w-fit transition-colors hover:bg-neutral-100">
-                                <div className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center">
-                                    <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                                        <path d="M4 0V8M0 4H8" stroke="currentColor" strokeWidth="1.5" />
+                            <div className="flex items-center gap-2">
+                                <div className="w-4 h-4 rounded-full bg-black flex items-center justify-center text-white text-[10px]">
+                                    <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 0V6M0 3H6" stroke="currentColor" strokeWidth="1.5" />
                                     </svg>
                                 </div>
-                                About us
-                            </button>
+                                <span className="font-medium text-sm">About us</span>
+                            </div>
                         </div>
 
                         {/* Right Column - Content */}
@@ -67,10 +68,12 @@ export function About() {
                                 {/* Top Row */}
                                 <div className="flex justify-between items-start mb-6">
                                     <div className="flex gap-[3px]">
-                                        <div className="w-[7px] h-[7px] rounded-full bg-black" />
-                                        <div className="w-[7px] h-[7px] rounded-full bg-neutral-200" />
-                                        <div className="w-[7px] h-[7px] rounded-full bg-neutral-200" />
-                                        <div className="w-[7px] h-[7px] rounded-full bg-neutral-200" />
+                                        {[0, 1, 2, 3].map((dotIdx) => (
+                                            <div
+                                                key={dotIdx}
+                                                className={`w-[7px] h-[7px] rounded-full ${dotIdx <= idx ? 'bg-black' : 'bg-neutral-200'}`}
+                                            />
+                                        ))}
                                     </div>
                                     <span className="text-[10px] font-bold text-black/40 pt-1">0{idx + 1}</span>
                                 </div>

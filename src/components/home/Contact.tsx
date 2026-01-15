@@ -16,7 +16,7 @@ export function Contact() {
                 />
             </div>
 
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="max-w-[1312px] mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Left Side - Form Card */}
                 <div className="bg-white text-black p-8 rounded-[30px] shadow-2xl">
                     <div className="flex justify-between items-start mb-8">

@@ -37,59 +37,61 @@ export function FAQ() {
 
     return (
         <section className="py-24 px-4 md:px-6 bg-background text-black">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-                <div className="flex flex-col gap-2 mb-6 md:mb-0">
-                    <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
-                        <div className="w-4 h-4 bg-black rounded-sm" />
+            <div className="max-w-[1312px] mx-auto">
+                {/* Header */}
+                <div className="flex flex-col md:flex-row justify-between items-start mb-16">
+                    <div className="flex flex-col gap-2 mb-6 md:mb-0">
+                        <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center">
+                            <div className="w-4 h-4 bg-black rounded-sm" />
+                        </div>
+                        <span className="font-medium">Questions</span>
                     </div>
-                    <span className="font-medium">Questions</span>
+
+                    <div className="flex flex-col items-end">
+                        <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter">FAQ.</h2>
+                        <span className="text-xl md:text-2xl font-semibold opacity-40">({faqs.length})</span>
+                    </div>
                 </div>
 
-                <div className="flex flex-col items-end">
-                    <h2 className="text-4xl md:text-6xl font-semibold tracking-tighter">FAQ.</h2>
-                    <span className="text-xl md:text-2xl font-semibold opacity-40">({faqs.length})</span>
+                {/* FAQ Accordion */}
+                <div className="flex flex-col">
+                    {faqs.map((faq) => (
+                        <div key={faq.id} className="border-t border-black/10 last:border-b">
+                            <button
+                                onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
+                                className="w-full py-8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-left group"
+                            >
+                                <div className="flex items-baseline gap-4">
+                                    <span className="opacity-40 font-mono text-sm">({faq.id})</span>
+                                    <h3 className="text-xl md:text-2xl font-semibold tracking-tight group-hover:opacity-70 transition-opacity">
+                                        {faq.question}
+                                    </h3>
+                                </div>
+                                <div className="w-8 h-8 rounded-full border border-black/20 flex items-center justify-center relative shrink-0">
+                                    <div className={cn("absolute w-3 h-[1px] bg-black transition-transform duration-300", openId === faq.id ? "rotate-180" : "rotate-0")} />
+                                    <div className={cn("absolute w-3 h-[1px] bg-black transition-transform duration-300", openId === faq.id ? "rotate-180" : "rotate-90")} />
+                                </div>
+                            </button>
+                            <AnimatePresence>
+                                {openId === faq.id && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="pb-8 pl-0 md:pl-16">
+                                            <p className="text-lg text-neutral-500 leading-relaxed max-w-3xl">
+                                                {faq.answer}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    ))}
                 </div>
-            </div>
-
-            {/* FAQ Accordion */}
-            <div className="flex flex-col">
-                {faqs.map((faq) => (
-                    <div key={faq.id} className="border-t border-black/10 last:border-b">
-                        <button
-                            onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
-                            className="w-full py-8 flex flex-col md:flex-row md:items-center justify-between gap-4 text-left group"
-                        >
-                            <div className="flex items-baseline gap-4">
-                                <span className="opacity-40 font-mono text-sm">({faq.id})</span>
-                                <h3 className="text-xl md:text-2xl font-semibold tracking-tight group-hover:opacity-70 transition-opacity">
-                                    {faq.question}
-                                </h3>
-                            </div>
-                            <div className="w-8 h-8 rounded-full border border-black/20 flex items-center justify-center relative shrink-0">
-                                <div className={cn("absolute w-3 h-[1px] bg-black transition-transform duration-300", openId === faq.id ? "rotate-180" : "rotate-0")} />
-                                <div className={cn("absolute w-3 h-[1px] bg-black transition-transform duration-300", openId === faq.id ? "rotate-180" : "rotate-90")} />
-                            </div>
-                        </button>
-                        <AnimatePresence>
-                            {openId === faq.id && (
-                                <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                                    className="overflow-hidden"
-                                >
-                                    <div className="pb-8 pl-0 md:pl-16">
-                                        <p className="text-lg text-neutral-500 leading-relaxed max-w-3xl">
-                                            {faq.answer}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-                ))}
             </div>
         </section>
     );

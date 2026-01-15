@@ -2,6 +2,17 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Instrument_Serif, Inter } from "next/font/google";
+
+const instrumentSerif = Instrument_Serif({
+    weight: ["400"],
+    style: ["italic"],
+    subsets: ["latin"],
+});
+
+const inter = Inter({
+    subsets: ["latin"],
+});
 
 export function Hero() {
     return (
@@ -52,7 +63,7 @@ export function Hero() {
                     {/* Title Area - fabrica® with inline circled R */}
                     <div className="w-full mt-4 md:mt-8 relative z-10">
                         <div className="flex items-start">
-                            <h1 className="text-[20vw] md:text-[17vw] leading-[0.85] font-bold tracking-[-0.04em] lowercase font-sans text-white">
+                            <h1 className={`text-[20vw] md:text-[17vw] leading-[0.85] font-bold tracking-[-0.04em] lowercase text-white ${inter.className}`}>
                                 fabrica
                             </h1>
                             {/* Circled R - smaller and positioned at top right of text */}
@@ -65,8 +76,7 @@ export function Hero() {
                     {/* Studio Text - positioned center-right, no overlap */}
                     <div className="w-full flex justify-center md:justify-center md:pl-[15vw] mt-[1vw] md:mt-[0.5vw]">
                         <span
-                            className="text-[12vw] md:text-[8vw] font-normal tracking-[-0.02em] leading-none"
-                            style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontStyle: 'italic' }}
+                            className={`text-[12vw] md:text-[8vw] font-normal tracking-[-0.02em] leading-none ${instrumentSerif.className}`}
                         >
                             Studio
                         </span>
@@ -108,10 +118,10 @@ export function Hero() {
 
                     {/* Right Side: Team Card */}
                     <div className="col-span-12 md:col-span-4 flex justify-end">
-                        <div className="group flex items-stretch gap-0 transition-all duration-300 hover:bg-white rounded-[12px]">
+                        <div className="group flex items-stretch gap-0 transition-all duration-300 hover:bg-white rounded-[16px]">
                             {/* Left Card - Image */}
-                            <div className="bg-white rounded-[12px] p-1 flex items-center transition-all duration-300">
-                                <div className="relative w-24 h-[120px] rounded-[8px] overflow-hidden shrink-0 bg-neutral-200">
+                            <div className="bg-white rounded-[16px] p-1.5 flex items-center transition-all duration-300">
+                                <div className="relative w-32 h-[160px] rounded-[12px] overflow-hidden shrink-0 bg-neutral-200">
                                     <Image
                                         src="https://framerusercontent.com/images/XBirhPxPnqDiGkAtvDrRCiK4pS8.jpg"
                                         alt="Team Lead"
@@ -122,12 +132,12 @@ export function Hero() {
                             </div>
 
                             {/* Right Card - Content */}
-                            <div className="bg-white rounded-[12px] p-3 pr-8 flex flex-col justify-center transition-all duration-300 grow">
-                                <div className="text-xs font-bold text-neutral-700 uppercase tracking-wider">Team Lead</div>
-                                <div className="text-xs text-neutral-400 font-medium">at fabrica®</div>
-                                <div className="text-xl font-bold text-black tracking-tight leading-tight mt-1 mb-3">Lauren Thompson</div>
+                            <div className="bg-white rounded-[16px] p-5 pr-10 flex flex-col justify-center transition-all duration-300 grow">
+                                <div className="text-sm font-bold text-neutral-700 uppercase tracking-wider">Team Lead</div>
+                                <div className="text-sm text-neutral-400 font-medium">at fabrica®</div>
+                                <div className="text-2xl font-bold text-black tracking-tight leading-tight mt-1 mb-4">Lauren Thompson</div>
 
-                                <button className="bg-black text-white text-xs font-semibold rounded-full py-2 px-4 flex items-center gap-2 group/btn hover:bg-neutral-800 transition-colors w-fit">
+                                <button className="bg-black text-white text-sm font-semibold rounded-full py-3 px-6 flex items-center gap-2 group/btn hover:bg-neutral-800 transition-colors w-fit">
                                     <span>Let's talk</span>
                                     <div className="w-1.5 h-1.5 rounded-full bg-white" />
                                 </button>
